@@ -32,6 +32,7 @@ document.addEventListener('mousedown', e => {
         resizePlot = e.target.closest('.plot');
         resizeStart = { x: e.clientX, y: e.clientY };
         resizeOrigin = { w: resizePlot.offsetWidth, h: resizePlot.offsetHeight };
+        document.body.classList.add('is-dragging');
         return;
     }
 
@@ -40,10 +41,12 @@ document.addEventListener('mousedown', e => {
         dragPlot = plot;
         dragPlotStart = { x: e.clientX, y: e.clientY };
         dragPlotOrigin = { x: parseInt(plot.style.left), y: parseInt(plot.style.top) };
+        document.body.classList.add('is-dragging');
         return;
     }
 
     dragging = true;
+    document.body.classList.add('is-dragging');
     dragStart = { x: e.clientX, y: e.clientY };
     panStart = { ...pan };
 });
@@ -67,7 +70,12 @@ document.addEventListener('mousemove', e => {
     pan.y = panStart.y + (e.clientY - dragStart.y);
     applyTransform();
 });
-document.addEventListener('mouseup', () => { dragging = false; dragPlot = null; resizePlot = null; });
+document.addEventListener('mouseup', () => {
+    dragging = false;
+    dragPlot = null;
+    resizePlot = null;
+    document.body.classList.remove('is-dragging');
+});
 
 document.addEventListener('wheel', e => {
     e.preventDefault();

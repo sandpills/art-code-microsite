@@ -28,6 +28,13 @@ body:active {
     cursor: grabbing;
 }
 
+body.is-dragging,
+body.is-dragging * {
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grabbing !important;
+}
+
 #canvas {
     position: absolute;
     width: calc(var(--canvas-w) * 1px);
