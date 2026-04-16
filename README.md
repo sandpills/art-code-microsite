@@ -7,12 +7,12 @@ art-code-microsite/
 ├── index.html
 ├── data.json
 ├── style/
-│   └── shared.css  
+|   └── styles.css <- only for landing
+│   └── shared.css  <- for styles shared across pages
 ├── members/
-│   └── <your-slug>/
-│       ├── index.html 
+│   └── your-name/
+│       ├── index.html
 │       └── assets/ 
-│           └── thumb.jpg
 ```
 
 ---
@@ -21,19 +21,18 @@ art-code-microsite/
 
 ### 1. fork this repo
 
-fork `git checkout -b add-yourname`
+fork `git checkout -b your-name`
 
 ### 2. create your folder
 
 ```
 members/
-  yourname/
+  your-name/
     index.html
     assets/
-      thumb.jpg
 ```
 
-you can copy an existing folder (e.g. `members/viola/`) as a starting point.
+you can copy an existing folder (e.g. `members/viola/`) as a starting point
 
 - in your html, remember to include a back link to the main menu : `<a id="backlink" href="../../">← Back to main</a>`
 - keep asset sizes reasonable!
