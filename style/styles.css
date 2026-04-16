@@ -1,0 +1,251 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #e8e4df;
+    --fg: #000000;
+    --canvas-w: 4000;
+    --canvas-h: 3000;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    cursor: grab;
+}
+
+body:active {
+    cursor: grabbing;
+}
+
+#canvas {
+    position: absolute;
+    width: calc(var(--canvas-w) * 1px);
+    height: calc(var(--canvas-h) * 1px);
+    will-change: transform;
+}
+
+.plot {
+    position: absolute;
+    width: 200px;
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    cursor: grab;
+    transition: box-shadow 0.2s;
+}
+
+.plot .resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+}
+
+.plot:active {
+    cursor: grabbing;
+}
+
+.plot:hover {
+    box-shadow: 0 0 70px var(--accent, #ccc);
+}
+
+.plot a {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+#coords {
+    position: fixed;
+    bottom: 12px;
+    right: 16px;
+    font-size: 11px;
+    opacity: 0.4;
+    z-index: 1000;
+    font-variant-numeric: tabular-nums;
+}
+
+#block-1 {
+    position: absolute;
+    left: 80px;
+    top: 60px;
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(135deg, #ff6b4a, #fff);
+}
+
+#block-2 {
+    position: absolute;
+    left: 900px;
+    top: 150px;
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(to bottom, #4466ff, #c8ff00);
+}
+
+#block-3 {
+    position: absolute;
+    left: 1600px;
+    top: 80px;
+    width: 400px;
+    height: 140px;
+    background: linear-gradient(to right, #e8e4df, #ff99cc, #e8e4df);
+}
+
+#block-4 {
+    position: absolute;
+    left: 2600px;
+    top: 1100px;
+    width: 160px;
+    height: 400px;
+    background: linear-gradient(to bottom, #c8ff00, transparent);
+}
+
+#block-5 {
+    position: absolute;
+    left: 500px;
+    top: 800px;
+    width: 260px;
+    height: 160px;
+    background: linear-gradient(180deg, #cc77ff, #fff);
+}
+
+#block-6 {
+    position: absolute;
+    left: 3000px;
+    top: 200px;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(to bottom right, #fae9e9, #4466ff);
+}
+
+#block-7 {
+    position: absolute;
+    left: 1200px;
+    top: 500px;
+    width: 500px;
+    height: 80px;
+    background: linear-gradient(to right, #000, #e8e4df);
+}
+
+#form-search {
+    position: absolute;
+    left: 600px;
+    top: 100px;
+}
+
+#form-search input {
+    width: 240px;
+    padding: 6px;
+    font: inherit;
+    border: 2px solid #000;
+}
+
+#form-search button {
+    padding: 6px 14px;
+    font: inherit;
+    border: 2px solid #000;
+    background: #fff;
+    cursor: pointer;
+}
+
+#form-select {
+    position: absolute;
+    left: 1400px;
+    top: 400px;
+}
+
+#form-select select {
+    padding: 6px;
+    font: inherit;
+    border: 2px solid #000;
+    background: #fff;
+}
+
+#slider {
+    position: absolute;
+    left: 200px;
+    top: 500px;
+}
+
+#slider input {
+    width: 200px;
+}
+
+#checkboxes {
+    position: absolute;
+    left: 2800px;
+    top: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#checkboxes label {
+    cursor: pointer;
+}
+
+#radios {
+    position: absolute;
+    left: 700px;
+    top: 1200px;
+    display: flex;
+    gap: 6px;
+}
+
+#radios label {
+    cursor: pointer;
+}
+
+#form-note {
+    position: absolute;
+    left: 2000px;
+    top: 1000px;
+}
+
+#form-note textarea {
+    width: 220px;
+    height: 80px;
+    padding: 6px;
+    font: inherit;
+    border: 2px solid #000;
+    resize: none;
+}
+
+#btn-ok {
+    position: absolute;
+    left: 3000px;
+    top: 1100px;
+    padding: 8px 16px;
+    font: inherit;
+    border: 2px solid #000;
+    background: #ff0000;
+    cursor: pointer;
+}
+
+#quote {
+    position: absolute;
+    left: 1000px;
+    top: 900px;
+}
+
+#quote input {
+    width: 420px;
+    padding: 6px;
+    font: inherit;
+    border: none;
+    background: transparent;
+}
