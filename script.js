@@ -94,14 +94,18 @@ document.addEventListener('touchmove', e => {
 }, { passive: false });
 document.addEventListener('touchend', () => { touchStart = null; });
 
+let degrees = ['135deg', '90deg', 'to top', 'to left', '45deg', '180deg'];
+let endColors = ['#ffffff', '#c7c7c7be', '#ff5af479', 'transparent', '#fbff004f', '#002fff5f'];
+
 function buildPlot(member) {
     const plot = document.createElement('div');
     plot.className = 'plot';
     plot.style.left = member.x + 'px';
     plot.style.top = member.y + 'px';
     if (member.accent) {
-        plot.style.background = `linear-gradient(135deg, ${member.accent}, #fff)`;
-        plot.style.setProperty('--accent', member.accent);
+        let randDeg = degrees[Math.floor(Math.random() * degrees.length)];
+        let randCol = endColors[Math.floor(Math.random() * endColors.length)];
+        plot.style.background = `linear-gradient(${randDeg}, ${member.accent}, ${randCol})`; plot.style.setProperty('--accent', member.accent);
     }
     plot.innerHTML = `<a href="members/${member.slug}/">${member.name}</a><div class="resize-handle"></div>`;
     return plot;
