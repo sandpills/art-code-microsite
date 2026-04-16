@@ -1,12 +1,18 @@
 [
     {
         "name": "viola he",
-        "pronouns": "they/them",
         "slug": "viola",
         "tagline": "hello",
-        "img": "members/viola/assets/thumb.jpg",
         "accent": "#c8ff00",
         "x": 400,
         "y": 400
+    },
+    {
+        "name": "anna zhang",
+        "slug": "viola",
+        "tagline": "hello",
+        "accent": "#ff6b4a",
+        "x": 200,
+        "y": 200
     }
 ]

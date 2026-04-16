@@ -37,8 +37,6 @@ body:active {
 
 .plot {
     position: absolute;
-    width: 200px;
-    height: 140px;
     display: flex;
     align-items: flex-end;
     padding: 12px;
@@ -78,74 +76,10 @@ body:active {
     font-variant-numeric: tabular-nums;
 }
 
-#block-1 {
+.scattered {
     position: absolute;
-    left: 80px;
-    top: 60px;
-    width: 320px;
-    height: 200px;
-    background: linear-gradient(135deg, #ff6b4a, #fff);
 }
 
-#block-2 {
-    position: absolute;
-    left: 900px;
-    top: 150px;
-    width: 180px;
-    height: 180px;
-    background: linear-gradient(to bottom, #4466ff, #c8ff00);
-}
-
-#block-3 {
-    position: absolute;
-    left: 1600px;
-    top: 80px;
-    width: 400px;
-    height: 140px;
-    background: linear-gradient(to right, #e8e4df, #ff99cc, #e8e4df);
-}
-
-#block-4 {
-    position: absolute;
-    left: 2600px;
-    top: 1100px;
-    width: 160px;
-    height: 400px;
-    background: linear-gradient(to bottom, #c8ff00, transparent);
-}
-
-#block-5 {
-    position: absolute;
-    left: 500px;
-    top: 800px;
-    width: 260px;
-    height: 160px;
-    background: linear-gradient(180deg, #cc77ff, #fff);
-}
-
-#block-6 {
-    position: absolute;
-    left: 3000px;
-    top: 200px;
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(to bottom right, #fae9e9, #4466ff);
-}
-
-#block-7 {
-    position: absolute;
-    left: 1200px;
-    top: 500px;
-    width: 500px;
-    height: 80px;
-    background: linear-gradient(to right, #000, #e8e4df);
-}
-
-#form-search {
-    position: absolute;
-    left: 600px;
-    top: 100px;
-}
 
 #form-search input {
     width: 240px;
@@ -162,12 +96,6 @@ body:active {
     cursor: pointer;
 }
 
-#form-select {
-    position: absolute;
-    left: 1400px;
-    top: 400px;
-}
-
 #form-select select {
     padding: 6px;
     font: inherit;
@@ -175,20 +103,11 @@ body:active {
     background: #fff;
 }
 
-#slider {
-    position: absolute;
-    left: 200px;
-    top: 500px;
-}
-
 #slider input {
     width: 200px;
 }
 
 #checkboxes {
-    position: absolute;
-    left: 2800px;
-    top: 800px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -199,21 +118,12 @@ body:active {
 }
 
 #radios {
-    position: absolute;
-    left: 700px;
-    top: 1200px;
     display: flex;
     gap: 6px;
 }
 
 #radios label {
     cursor: pointer;
-}
-
-#form-note {
-    position: absolute;
-    left: 2000px;
-    top: 1000px;
 }
 
 #form-note textarea {
@@ -226,20 +136,11 @@ body:active {
 }
 
 #btn-ok {
-    position: absolute;
-    left: 3000px;
-    top: 1100px;
     padding: 8px 16px;
     font: inherit;
     border: 2px solid #000;
     background: #ff0000;
     cursor: pointer;
-}
-
-#quote {
-    position: absolute;
-    left: 1000px;
-    top: 900px;
 }
 
 #quote input {

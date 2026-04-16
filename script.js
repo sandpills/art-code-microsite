@@ -95,25 +95,88 @@ document.addEventListener('touchmove', e => {
 document.addEventListener('touchend', () => { touchStart = null; });
 
 let degrees = ['135deg', '90deg', 'to top', 'to left', '45deg', '180deg'];
-let endColors = ['#ffffff', '#c7c7c7be', '#ff5af479', 'transparent', '#fbff004f', '#002fff5f'];
+let endColors = ['#ffffff', '#ff5af48d', 'transparent', '#0055ff78'];
+let formats = [
+    (deg, accent, end) => `linear-gradient(${deg}, ${accent}, ${end})`,
+    (deg, accent, end) => `linear-gradient(${deg}, ${end}, ${accent}, ${end})`,
+];
+let widths = [160, 200, 260, 320, 400];
+let heights = [100, 140, 180, 240, 300];
 
-function buildPlot(member) {
+function buildPlot(member, x, y) {
     const plot = document.createElement('div');
     plot.className = 'plot';
-    plot.style.left = member.x + 'px';
-    plot.style.top = member.y + 'px';
+    plot.style.left = x + 'px';
+    plot.style.top = y + 'px';
     if (member.accent) {
         let randDeg = degrees[Math.floor(Math.random() * degrees.length)];
         let randCol = endColors[Math.floor(Math.random() * endColors.length)];
-        plot.style.background = `linear-gradient(${randDeg}, ${member.accent}, ${randCol})`; plot.style.setProperty('--accent', member.accent);
+        let randFmt = formats[Math.floor(Math.random() * formats.length)];
+        plot.style.background = randFmt(randDeg, member.accent, randCol);
+        plot.style.setProperty('--accent', member.accent);
     }
+    plot.style.width = widths[Math.floor(Math.random() * widths.length)] + 'px';
+    plot.style.height = heights[Math.floor(Math.random() * heights.length)] + 'px';
     plot.innerHTML = `<a href="members/${member.slug}/">${member.name}</a><div class="resize-handle"></div>`;
     return plot;
 }
 
 async function init() {
     const members = await fetch('data.json').then(r => r.json());
-    members.forEach(m => canvas.appendChild(buildPlot(m)));
+
+    // shuffle people
+    for (let i = members.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [members[i], members[j]] = [members[j], members[i]];
+    }
+
+    // build grid
+    const cols = Math.ceil(Math.sqrt(members.length));
+    const rows = Math.ceil(members.length / cols);
+    const cellW = (CANVAS_W - 200) / cols;
+    const cellH = (CANVAS_H - 200) / rows;
+
+    const placed = [];
+
+    members.forEach((m, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const jitterX = Math.random() * Math.min(cellW - 400, 600);
+        const jitterY = Math.random() * Math.min(cellH - 300, 400);
+        const x = 100 + col * cellW + jitterX;
+        const y = 100 + row * cellH + jitterY;
+        const plot = buildPlot(m, x, y);
+        canvas.appendChild(plot);
+        placed.push({ x, y, w: parseInt(plot.style.width), h: parseInt(plot.style.height) });
+    });
+
+    // avoid overlaps
+    function overlaps(x, y, w, h) {
+        const pad = 40;
+        return placed.some(p =>
+            x < p.x + p.w + pad && x + w + pad > p.x &&
+            y < p.y + p.h + pad && y + h + pad > p.y
+        );
+    }
+
+    // scatter other elements
+    const SCATTER_W = 2500;
+    const SCATTER_H = 1300;
+
+    document.querySelectorAll('.scattered').forEach(el => {
+        const w = el.offsetWidth || 200;
+        const h = el.offsetHeight || 40;
+        let x, y, attempts = 0;
+        do {
+            x = Math.random() * (SCATTER_W - w) + 50;
+            y = Math.random() * (SCATTER_H - h) + 50;
+            attempts++;
+        } while (overlaps(x, y, w, h) && attempts < 50);
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        placed.push({ x, y, w, h });
+    });
+
     applyTransform();
 }
 
