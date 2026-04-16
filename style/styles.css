@@ -53,11 +53,19 @@ body.is-dragging * {
 
 .plot .resize-handle {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 4px;
+    bottom: 4px;
     width: 14px;
     height: 14px;
     cursor: nwse-resize;
+    border-right: 2px solid var(--fg);
+    border-bottom: 2px solid var(--fg);
+    opacity: 0.2;
+    transition: opacity 0.1s;
+}
+
+.plot:hover .resize-handle {
+    opacity: 0.5;
 }
 
 .plot:active {
